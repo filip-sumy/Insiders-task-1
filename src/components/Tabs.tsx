@@ -115,43 +115,32 @@ const SortableTab: React.FC<SortableTabProps> = ({ tab, activeTab, onClick }) =>
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "4px 8px",
-    borderRadius: "4px",
-    background: "#eee",
     userSelect: "none",
   };
 
   return (
-    <div ref={setNodeRef} style={style} className="tab-wrapper">
-      {}
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`tab-wrapper ${activeTab === tab.id ? "active" : ""}`}
+    >
       <img
         src={tab.icon}
         alt={`${tab.title} icon`}
         width={18}
         height={18}
-        {...listeners}
-        {...attributes}
         style={{ cursor: "grab", userSelect: "none" }}
+        {...listeners}   
+        {...attributes}  
       />
-
-      {}
       <button
-        className={`tab ${activeTab === tab.id ? "active" : ""}`}
-        onClick={() => onClick(tab)}
-        style={{
-          border: "none",
-          background: "transparent",
-          cursor: "pointer",
-          fontSize: "14px",
-          padding: 0,
-        }}
+        className="tab-button"
+        onClick={() => onClick(tab)}  
       >
         {tab.title}
       </button>
     </div>
   );
 };
+
 
